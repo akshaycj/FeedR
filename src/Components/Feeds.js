@@ -5,28 +5,48 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 
+const upv = gql`
+{
+  allPosts(orderBy: upVotes_DESC){
+    title
+    description
+    upVotes
+    downVotes
+    author {
+      username
+      thumbnail
+    }
+    media {
+      thumbnail
+    }
+  }
+}
+`
+
+const nor = gql`
+{
+  allPosts{
+    title
+    description
+    upVotes
+    downVotes
+    author {
+      username
+      thumbnail
+    }
+    media {
+      thumbnail
+    }
+  }
+}
+`
+
 export default class Feeds extends Component {
   render() {
     return (
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         <Query
-          query={gql`
-            {
-              allPosts {
-                title
-                description
-                upVotes
-                downVotes
-                author {
-                  username
-                  thumbnail
-                }
-                media {
-                  thumbnail
-                }
-              }
-            }
-          `}
+          query={this.props.sort==='b'?upv:nor}
         >
           {({ loading, error, data }) => {
             if (loading)
