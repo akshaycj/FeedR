@@ -39,8 +39,12 @@ export default class Feeds extends Component {
               );
             if (error) return <p>Error :(</p>;
 
-            console.log("asas", data.allPosts);
-
+            console.log("data", data.allPosts);
+            
+            var posts = data.allPosts;
+            
+       
+            
             return data.allPosts.map(feed => (
               <Feed
                 title={feed.title}
