@@ -1,0 +1,10 @@
+desc {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+desc:hover {
+    overflow: visible;
+}
